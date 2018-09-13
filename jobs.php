@@ -1,84 +1,30 @@
 <?php
+require 'app/Models/Job.php';
+require 'app/Models/Project.php';
 
-class Job {
-  private $title;
-  public $description;
-  public $visible;
-  public $months;
-
-  public function __construct($title, $description) {
-    $this->title = $title;
-    $this->description = $description;
-  }
-
-  public function setTitle($t) {
-    if($t == '') {
-      $this->title = 'N/A';
-    } else {
-      $this->title = $t;
-    }
-  }
-
-  public function getTitle() {
-    return $this->title;
-  }
-
-  public function getDurationAsString() {
-    $years = floor($this->months / 12);
-    $extraMonths = $this->months % 12;
-    return "$years years $extraMonths months";
-  }
-}
 
 $job1 = new Job('PHP Developer', 'This job is awesome!!');
-$job1->visible = true;
 $job1->months = 16;
 
-$job2 = new Job();
-$job2->setTitle('Python Developer');
-$job2->description = 'This job is vulture!!';
-$job2->visible = true;
+$job2 = new Job('Python Developer', 'This job is vulture!!');
 $job2->months = 24;
 
-$job3 = new Job();
-$job3->setTitle('');
-$job3->description = 'This job is Spider!!';
-$job3->visible = true;
+$job3 = new Job('DevOps', 'This job is future!!');
 $job3->months = 32;
+
+$project1 = new Project('Project 1', 'Description');
 
 $jobs = [
   $job1,
   $job2,
   $job3
-    // [
-    //   'title' => 'PHP Developer',
-    //   'description' => ,
-    //   'visible' => true,
-    //   'months' => 16
-    // ],
-    // [
-    //   'title' => 'Python Dev',
-    //   'visible' => false,
-    //   'months' => 14
-    // ],
-    // [
-    //   'title' => 'DevOps',
-    //   'visible' => true,
-    //   'months' => 5
-    // ],
-    // [
-    //   'title' => 'NodeJS Dev',
-    //   'visible' => true,
-    //   'months' => 24
-    // ],
-    // [
-    //   'title' => 'Frontend Dev',
-    //   'visible' => true,
-    //   'months' => 3
-    // ]
-  ];
+ ];
+
+$projects = [
+  $project1
+];
     
-  function printJob($job) {
+  function printElement($job) {
     if($job->visible == false) {
       return;
     }
